@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,epsf, graphics,enumerate,fancyhdr,marvosym,cancel}
+\usepackage[letterpaper, margin=0.9in]{geometry}
+
+% ordered lists have letters instead of numbers
+\renewcommand\theenumi{\alph{enumi}}
+\renewcommand\labelenumi{(\theenumi)}
+
+% subsections have letters instead of numbers
+\renewcommand{\thesubsection}{\thesection (\alph{subsection})}
+
+% use hyperref for links but don't draw the ugly boxes around links
+\usepackage[hidelinks]{hyperref}
+
+% command to create underlined link to outside websites
+\newcommand{\hrefunderline}[2]{\underline{\href{#1}{#2}}}
+
+% symbols for common sets
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+
+% for congruences
+\newcommand{\mmod}[1]{\;(\operatorname{mod} {#1})}
+
+% new theorem style with boldface title and italic content
+\newtheoremstyle{step}%            % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {\itshape}%                           % Body font
+  {}%                                     % Indent amount
+  {\itshape}%                          % Theorem head font
+  {:}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {}%                                     % Theorem head spec (can be left empty, meaning `normal')
+
+% new theorem style for a gap in the notes
+\newtheoremstyle{gap}%            % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {\itshape}%                           % Body font
+  {}%                                     % Indent amount
+  {\itshape}%                          % Theorem head font
+  {!!!}%                                    % Punctuation after theorem head
+  {    }%                                    % Space after theorem head, ' ', or \newline
+  {}%                                     % Theorem head spec (can be left empty, meaning `normal')
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{claim}{Claim}
+\newtheorem*{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+
+\theoremstyle{step}
+\newtheorem{step}{Step}[subsection]
+\renewcommand{\thestep}{\arabic{step}}
+
+\theoremstyle{gap}
+\newtheorem*{gap}{Gap}
+
+\begin{document}
+
+
+\title{Probability Notes}
+\author{Duncan MacIntyre}
+\date{\today}
+\maketitle
+\tableofcontents
+\bigskip
+\newpage
+
+
+\end{document}
