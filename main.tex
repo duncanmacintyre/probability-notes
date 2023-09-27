@@ -203,14 +203,66 @@ Let \((\Omega, \col{f}, \p)\) be a probability space. Collections \((\col{A}_i) 
 Let \((\Omega_1, \col{f}_1, \mu_1)\) and \((\Omega_2, \col{f}_2, \mu_2)\) be measure spaces. A function \(g: \Omega_1 \to \Omega_2\) is called \defname{measurable} if for all \(A \in \col{f}_2\) we have \(g^{-1}(A) \in \col{f}_1\).
 \end{definition}
 
+\begin{remark}
+This is similar to the topological definition of continuous functions.
+\end{remark}
+
 
 \begin{definition}
-A \defname{random variable} on a probability space \((\Omega, f, \p)\) is a measurable function \(\rv{X}:\Omega \to \RR\). 
+A \defname{random variable} on a probability space \((\Omega, \col{f}, \p)\) is a measurable function \(\rv{X}:\Omega \to \RR\), where we use the usual Borel \(\sigma\)-algebra as the \(\sigma\)-algebra on \(\RR\).
 \end{definition}
+
+\begin{notation}
+When writing down an event involving a random variable \(\rv{X}\), it is common to write \(\rv{X}\) when we really mean \(\rv{X}(\omega)\). For example, we might write \(\p(\rv{X} = 1)\) to mean \(\p\left(\left\{\omega \in \Omega : \rv{X}(\omega) = 1\right\}\right)\).
+\end{notation}
+
 
 \begin{gap}
 Add some examples of random variables.
 \end{gap}
+
+\begin{remark}
+We can form an equivalence relation on random variables by writing \(\rv{X} \sim \rv{Y}\) if \(\p(X=Y)=1\), that is, if \(\{\omega \in \Omega : \rv{X}(\omega) \neq \rv{Y}(\omega)\}\) has measure zero. Equivalent random variables have the same probabilistic properties. Some may prefer to think of ``random variables'' as these equivalence classes of functions. In this sense, it doesn't make sense to ask what a random variable's value is for a certain \(\omega \in \Omega\); it only makes sense to look at the random variable's values on events with measure greater than zero.
+\end{remark}
+
+\begin{definition}
+The \defname{distribution function} of a random variable \(\rv{X}\) is the function \(F_\rv{X}: \RR \to \RR\) given by \(F(t) = \p(X \leq t)\).
+\end{definition}
+
+We immediately see that distribution functions are monotonically increasing and right continuous (i.e., \(\lim_{t\to s^+} F_\rv{X}(t) = F_\rv{X}(s)\) for all \(s \in [0,1)\)). Also, \(F_\rv{X}\) has a jump discontinuity at \(s\) if and only if \(\p(\rv{X} = s) > 0\) (and if so, the jump is of size \(\p(\rv{X} = s)\)). There is an interesting theorem that provides something like a converse.
+
+\begin{theorem}
+Let \(F:\RR \to [0,1]\) be monotonically increasing and right continuous (i.e., \(\lim_{t\to s^+} F(t) = F(s)\) for all \(s \in [0,1))\). Then there exists a probability space \((\Omega, \col{f}, \p)\) and a random variable \(\rv{X}:\Omega \to \RR\) such that \(F = F_\rv{X}\).
+\end{theorem}
+
+\begin{gap}
+Add the two theorem proofs.
+\end{gap}
+
+\begin{definition}
+Given random variables \((\rv{X}_i)\) let \(\col{A}_i = \{{\rv{X}_i}^{-1}(A) : A \in \bor\}\). We say that \((\rv{X}_i)\) are \defname{independent} if \((\col{A}_i)\) are independent. (Here, \(\bor\) is the usual Borel \(\sigma\)-algebra on \(\RR\).)
+\end{definition}
+
+\begin{theorem}
+Let \((\rv{X}_i)\) be random variables and let \(\col{A}_i = \left\{\left\{\rv{X}_i \leq t\right\} : t \in \RR\right\}\). Suppose \((\col{A}_i)\) are independent. Then \((\rv{X}_i)\) are independent.
+\end{theorem}
+
+\begin{gap}
+Prove the theorem.
+\end{gap}
+
+\begin{definition}
+The \defname{joint distribution function} of random variables \(\rv{X}_1, \ldots, \rv{X}_n\) is the function \(F:\RR^n \to \RR\) given by \[F\left(\langle t_1, \ldots, t_n\rangle\right) = \p \left(\rv{X}_i \leq t_i \;\forall\; i \in \{0, \ldots, n\}\right).\]
+\end{definition}
+
+
+\begin{gap}
+Add notes on stochastic domination, percolation, etc.
+\end{gap}
+
+
+
+
 
 
 
