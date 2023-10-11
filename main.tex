@@ -304,6 +304,48 @@ The \defname{joint distribution function} of random variables \(\rv{X}_1, \ldots
 Add notes on stochastic domination, percolation, etc.
 \end{gap}
 
+\section{Sequences of random variables}
+
+\begin{definition}
+Let \(\rv{X}_n, \rv{X} : \Omega\to \RR\) be random variables. We say that \(\{\rv{X}_n\}\) \defname{converges almost surely} to \(\rv{X}\) and write \(\rv{X}_n \asto \rv{X}\) if \(\p\left(\left\{\omega \in \Omega : \rv{X}_n(\omega) \to \rv{X}(\omega)\right\}\right) = 1\). We say that \(\{\rv{X}_n\}\) \defname{converges in probability} to \(\rv{X}\) and write \(\rv{X}_n \pto \rv{X}\) if for all \(\epsilon>0\) we have \(\p\left(\left|\rv{X}_n-\rv{X}\right| < \epsilon\right) \to 1\) as \(n \to \infty\).
+\end{definition}
+
+\begin{definition}
+Let \(\rv{X}_n : \Omega_n \to \RR\) and \(\rv{X}:\Omega \to \RR\) be random variables. We say that \(\{\rv{X}_n\}\) \defname{converges in distribution} to \(\rv{X}\) and write \(\rv{X}_n \disto \rv{X}\) if \(F_{\rv{X}_n}(t) \to F_\rv{X}(t)\) for all \(t\in\RR\) such that \(\p\left(\rv{X}=t\right) = 0\). 
+\end{definition}
+
+\begin{theorem}
+Let \(\rv{X}_n, \rv{X} : \Omega\to \RR\) be random variables.
+\begin{enumerate}
+\item
+If \(\rv{X}_n \asto \rv{X}\) then \(\rv{X}_n \pto \rv{X}\).
+\item
+If \(\rv{X}_n \pto \rv{X}\) then \(\rv{X}_n \disto \rv{X}\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}\ 
+\begin{enumerate}
+\item
+Suppose \(\rv{X}_n \asto \rv{X}\). Let \(S = \left\{\omega \in \Omega : \rv{X}_n(\omega) \to \rv{X}(\omega)\right\}\). Then \(\p(S) = 1\). 
+
+Let \(\epsilon > 0\) and let \(A_n^\epsilon = \{|\rv{X}_n-X| < \epsilon\}\). For all \(\omega \in S\), there exists an \(N_\omega\) such that \(|\rv{X}_n(\omega) - X(\omega)| < \epsilon\) for all \(n \geq N_\omega\). In other words, if \(n \geq N(\omega)\) then \(\omega \in A_n^\epsilon\). Thus \(S \subset \{A_n^\epsilon \text{ eventually}\} \subset \{A_n^\epsilon \text{ i.o.}\}\). Since \(\p(S) = 1\), we must have \(\p\left(\{A_n^\epsilon \text{ i.o.}\}\right) = 1\).
+
+
+%
+%\(\rv{X}_n \asto \rv{X}\) if and only if \(\p\left(A_n^\epsilon \text{ i.o.}\right) = 1\) for all \(\epsilon > 0\).
+%
+%\(\rv{X}_n \pto \rv{X}\) if and only if \(\p\left(A_n^\epsilon\right) \to 1\) as \(n \to \infty\) for all \(\epsilon > 0\).
+
+
+\item
+gap
+\end{enumerate}
+\end{proof}
+
+
+
+
 
 
 
