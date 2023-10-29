@@ -24,7 +24,7 @@ graphics,enumerate,fancyhdr,marvosym,cancel}
 % the probability metric
 \newcommand{\p}{\mathbb{P}}
 % expectation value
-\newcommand{\ex}{\mathbb{E}}
+\newcommand{\ex}{\mathbb{E}\,}
 % characteristic functions
 \newcommand{\charf}[1]{\mathbf{1}_{#1}}
 % the Borell sigma algebra on the reals
@@ -37,7 +37,10 @@ graphics,enumerate,fancyhdr,marvosym,cancel}
 \newcommand{\asto}{\xrightarrow{\text{a.s.}}}
 % convergence in probability
 \newcommand{\pto}{\xrightarrow{\p}}
+% convergence in distribution
 \newcommand{\disto}{\xrightarrow{\text{dist}}}
+% convergence in expectation
+\newcommand{\exto}{\xrightarrow{L^1}}
 
 
 % symbols for common sets
@@ -179,7 +182,7 @@ Let \((\Omega, \col{f}, \p)\) be a measure space. If \(\p(\col{f}) = 1\), we cal
 It is common to use a shorthand notation for events. We often write \(\{\text{condition}\}\) to mean \(\{\omega \in \Omega\;:\;\text{condition}\}\) and we often write \(\p(\text{condition})\) to mean \(\p\left(\{\omega \in \Omega\;:\;\text{condition}\}\right)\).
 \end{notation}
 
-\begin{theorem}\label{thm.monotoneconvergence}
+\begin{theorem}\label{thm.nestedconvergence}
 Let \(\{A_n\}_{n \in \NN}\) be a sequence of events.
 \begin{enumerate}
 \item
@@ -407,7 +410,7 @@ so
 \[\p(|\rv{X}-\rv{Y}|\geq \epsilon) \leq \p\left(|\rv{X}_n-\rv{X}| \geq \frac{\epsilon}{2}\right) + \p\left(|\rv{X}_n - \rv{Y}| \geq \frac{\epsilon}{2}\right) \to 0\]
 as \(n \to \infty\). Therefore \(\p(|\rv{X}-\rv{Y}| < \epsilon) = 1\).
 
-Take \(A_1 = \{|\rv{X}-\rv{Y}| < 1\}\) and for \(n \geq 2\) take \(A_n = A_{n-1} \cap \{|\rv{X}-\rv{Y}| < \frac{1}{n}\}\). Then all \(\p(A_n) = 1\) and \(A_1 \supset A_2 \supset A_3 \supset \cdots\). Let \(A = \cap_n A_n\). Then by Theorem \ref{thm.monotoneconvergence}, \(\p(A) = 1\). Also for all \(\omega \in A\) we must have \(\rv{X}(\omega) = \rv{Y}(\omega)\). We conclude that \(\p(\rv{X}=\rv{Y}) = 1\).
+Take \(A_1 = \{|\rv{X}-\rv{Y}| < 1\}\) and for \(n \geq 2\) take \(A_n = A_{n-1} \cap \{|\rv{X}-\rv{Y}| < \frac{1}{n}\}\). Then all \(\p(A_n) = 1\) and \(A_1 \supset A_2 \supset A_3 \supset \cdots\). Let \(A = \cap_n A_n\). Then by Theorem \ref{thm.nestedconvergence}, \(\p(A) = 1\). Also for all \(\omega \in A\) we must have \(\rv{X}(\omega) = \rv{Y}(\omega)\). We conclude that \(\p(\rv{X}=\rv{Y}) = 1\).
 
 \item
 From Definition \ref{def.disto} it is immediately clear that \(F_\rv{X} = F_\rv{Y}\) except where \(F_\rv{X}\) is discontinuous. This can happen for at most countably many \(t \in \RR\) (because at each discontinuity there exists a unique rational not in the range of \(F_\rv{X}\)). Then \(\{s \in \RR:F_\rv{X}(s) = F_\rv{Y}(s)\}\) is dense everywhere in \(\RR\). Thus for any \(t\in\RR\) where \(F_\rv{X}\) is discontinuous, there exist \(t_n\in \RR\) with \(t_n \to t\) and \(t_n > t\) and \(F_\rv{X}(t_n) = F_\rv{Y}(t_n)\) for all \(n\). Recalling that \(F_\rv{X}\) and \(F_\rv{Y}\) are right-continuous, we must have \(F_\rv{X}(t) = \lim_{n \to \infty} F_\rv{X}(t_n) = \lim_{n \to \infty} F_\rv{Y}(t_n) = F_\rv{Y}(t) \). This shows that \(F_\rv{X} = F_\rv{Y}\) everywhere.
@@ -431,6 +434,132 @@ Suppose \(\rv{X}_n \disto \rv{X}\). Then there exist \(\rv{Y}_n, \rv{Y}\) such t
 \begin{gap}
 Prove the theorem.
 \end{gap}
+
+
+\section{Expectation values}
+
+\begin{definition}
+A \defname{simple random variable} is a random variable \(\rv{X}:\Omega \to \RR\) such that \(\rv{X} = \sum_{i=1}^\infty y_i \charf{A_i}\) for some \(y_i \in \RR\) and disjoint \(A_i \subset \Omega\).
+\end{definition}
+
+\begin{theorem}
+For any random variable \(\rv{X}\) there exist simple random variables \(\rv{X}_n\) such that for all \(n\) we have \(\rv{X}_n \leq \rv{X}_{n+1}\) everywhere and \(\rv{X}_n \to \rv{X}\).
+\end{theorem}
+
+\begin{definition}
+Let \(\rv{X} = \sum_{i=1}^\infty y_i \charf{A_i}\) be a simple random variable (with disjoint \(A_i\)). The \defname{expectation} of \(\rv{X}\) is \(\ex \rv{X} = \sum_{i=1}^\infty y_i \p(A_i)\).
+\end{definition}
+
+\begin{theorem}\ 
+\begin{enumerate}
+\item If \(\rv{X} \geq 0\) everywhere then \(\ex \rv{X} \geq 0\).
+\item For simple random variables \(\rv{X}\) and \(\rv{Y}\) and \(a \in \RR\) we have \(\ex a \rv{X} = a \ex \rv{X}\) and \(\ex (X+Y) = \ex X + \ex Y\) (linearity).
+\item If \(\rv{X} \leq \rv{Y}\) everywhere then \(\ex\rv{X} \leq \ex\rv{Y}\) (monotonicity).
+\end{enumerate}
+\end{theorem}
+
+\begin{gap}
+Prove the theorem.
+\end{gap}
+
+Now that we have defined the expectation for simple random variables, we want to extend the definition to all random variables. First we extend it to positive random variables.
+
+\begin{definition}
+Let \(\rv{X}: \Omega \to \RR\) be a random variable with \(\rv{X} > 0\) everywhere. Define the \defname{expectation} of \(\rv{X}\) to be
+\[\ex \rv{X} = \sup \left\{\ex \rv{Y} : \rv{Y} \text{ is a simple random variable with } \rv{Y} \leq \rv{X} \text{ everywhere} \right\}.\]
+\end{definition}
+
+\begin{theorem}{(Monotone Convergence Theorem)}\ 
+
+Suppose \(\rv{X}_n \to \rv{X}\) and always \(\rv{X}_{n+1} \geq \rv{X}_{n}\) everywhere. Then \(\ex \rv{X}_n \to \ex \rv{X}\).
+\end{theorem}
+
+\begin{gap}
+Prove the theorem.
+\end{gap}
+
+\begin{gap}
+Discuss the expectation for random variables in general, not just non-negative random variables.
+\end{gap}
+
+\begin{notation}
+Instead of \(\ex \rv{X}\) we sometimes write \(\int \rv{X} d\p\) or \(\int \rv{X}(\omega) d\p(\omega)\).
+\end{notation}
+
+\begin{definition}
+We say that \(\rv{X}_n\) \defname{converge in expectation} to \(\rv{X}\) and write \(\rv{X}_n \exto \rv{X}\) if \(\ex |\rv{X}_n - \rv{X}| \to 0\) as \(n \to \infty\).
+\end{definition}
+
+\begin{theorem}{(Markov's Inequality)}
+If \(\rv{X} > 0\) everywhere then \(\p(\rv{X} \geq t) \leq \frac{\ex \rv{X}}{t}\).
+\end{theorem}
+
+\begin{gap}
+Prove the theorem.
+\end{gap}
+
+\begin{theorem}{(Fatou's Lemma)}
+If \(\rv{X}_n \geq 0\) everywhere then
+\begin{enumerate}
+\item
+\(\liminf \ex \rv{X}_n \geq \ex \liminf \rv{X}_n\)
+\item
+\(\limsup \ex \rv{X}_n \leq \ex \limsup \rv{X}_n\).
+\end{enumerate}
+\end{theorem}
+
+\begin{gap}
+Prove the theorem.
+\end{gap}
+
+\begin{theorem}{(Dominated Convergence Theorem)}
+Let \(\rv{X}_n, \rv{X}, \rv{Y}\) be random variables with all \(|\rv{X}_n| \leq \rv{Y}\) and \(\rv{X}_n \asto \rv{X}\) and \(\ex \rv{Y}\) is finite. Then \(\ex \rv{X} = \lim_{n \to \infty} \ex \rv{X}_n\).
+\end{theorem}
+
+\begin{gap}
+Prove the theorem.
+\end{gap}
+
+\begin{gap}
+Add the example theorem in graph theory.
+\end{gap}
+
+\begin{theorem}
+If \(\rv{X}_i\) are independent random variables then \(\ex \prod_i \rv{X}_i = \prod_i \ex \rv{X}_i\).
+\end{theorem}
+
+\begin{gap}
+Prove the theorem.
+\end{gap}
+
+\begin{theorem}
+If \(\rv{X}_i\) are random variables each with finite expectation then \(\ex \prod_i \rv{X}_i = \prod_i \ex \rv{X}_i\).
+\end{theorem}
+
+\begin{gap}
+Prove the theorem.
+\end{gap}
+
+\begin{theorem}
+Random variables \(\rv{X}_i\) are independent if and only if for all bounded functions \(f_i\), \(\ex \prod_i f_i(\rv{X}_i) = \prod_i \ex f_i(\rv{X}_i)\).
+\end{theorem}
+
+\begin{gap}
+Prove the theorem.
+\end{gap}
+
+\begin{definition}
+Random variables \(\rv{X}\) and \(\rv{y}\) are called \defname{uncorrelated} if \(\ex (\rv{X} \rv{Y}) = (\ex \rv{X})(\ex \rv{Y})\).
+\end{definition}
+
+\begin{theorem}{(Law of Large Numbers)}\ 
+
+Let \(\rv{X}_n\) be independent identically-distributed random variables each with \(\ex |\rv{X}_n|\) being finite. Then \(\frac{1}{n} \sum_{i=1}^n \rv{X}_i \asto \ex \rv{X}_1\) as \(n \to \infty\).
+\end{theorem}
+
+
+
+
 
 
 
